@@ -22,7 +22,6 @@ public class RedisConfig {
         return jedisConnectionFactory;
     }
 
-
     @Bean
     public StringRedisTemplate redisTemplate () {
         StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
@@ -30,5 +29,4 @@ public class RedisConfig {
 
         return stringRedisTemplate;
     }
-
 }
