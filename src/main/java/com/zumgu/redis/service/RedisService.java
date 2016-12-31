@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -35,10 +34,20 @@ public class RedisService {
         valueOperations.set(key, value);
     }
 
+    public String getValue (String key) {
+        return valueOperations.get("test:line");
+    }
+
     public void pushList (String key, List<String> list) {
         for (String value : list) {
             listOperations.rightPush(key, value); // rpush test:task 자기소개 rpush [key] [value]
         }
+    }
+
+    public List<String> getAllList (String key) {
+        Long endOfList = listOperations.size(key);
+
+        return listOperations.range(key, 0, endOfList);
     }
 
     public void putHash (String key, Map<String, String> map) {
